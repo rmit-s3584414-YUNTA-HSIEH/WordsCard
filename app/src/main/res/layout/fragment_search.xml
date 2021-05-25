@@ -19,21 +19,46 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:iconifiedByDefault="false"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="1dp" />
+            tools:layout_editor_absoluteX="28dp" />
+
+        <Button
+            android:id="@+id/textButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{searchViewModel.word.word}"
+            app:layout_constraintEnd_toStartOf="@id/kk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            tools:text="test" />
 
         <TextView
-            android:id="@+id/word_info"
+            android:id="@+id/kk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="27dp"
+            android:text="@{searchViewModel.word.phonetics.get(0).text}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/textButton"
+            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            tools:text="test" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{searchViewModel.word.word}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar" />
-
+            app:listData="@{searchViewModel.wordDetail}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textButton"
+            app:layoutManager ="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

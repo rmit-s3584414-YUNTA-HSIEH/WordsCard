@@ -26,7 +26,6 @@ class SearchFragment: Fragment() {
         // Inflate the layout XML file and return a binding object instance
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
 
-
         return binding.root
     }
 
@@ -35,8 +34,10 @@ class SearchFragment: Fragment() {
 
         binding.searchViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
+        binding.recyclerView.adapter = WordDetailAdapter()
         binding.searchBar.queryHint = "type the word here"
+
+
         binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -48,10 +49,15 @@ class SearchFragment: Fragment() {
                 // task HERE
                 viewModel.getWord(query)
                 Log.i("query",query)
+
                 return false
             }
 
         })
+
+        binding.textButton.setOnClickListener {
+            viewModel.PlayRaudio()
+        }
 
     }
 }
