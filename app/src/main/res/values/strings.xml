@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Words Card</string>
     <string name="title_search">Search</string>
-    <string name="title_words">Words</string>
+    <string name="title_words">Word List</string>
     <string name="title_learning">Learning</string>
+    <string name="collect_button">Collect</string>
 </resources>

@@ -23,7 +23,7 @@ private val retrofit = Retrofit.Builder()
 interface WordsApiService{
 
     @GET("{word}")
-    suspend fun getWord(@Path("word") word: String): List<WordDefinition>
+     suspend fun getWord(@Path("word") word: String): List<WordDefinition>
 }
 
 

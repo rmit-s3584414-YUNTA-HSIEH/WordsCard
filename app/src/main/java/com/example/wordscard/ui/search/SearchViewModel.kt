@@ -28,7 +28,7 @@ class SearchViewModel: ViewModel() {
 
 
     fun getWord(Query: String){
-        viewModelScope.launch {
+        viewModelScope.launch{
             try{
                 _word.value = wordsApi.retrofitService.getWord(Query).get(0)
                 Log.i("word", _word.value!!.toString())
@@ -62,11 +62,11 @@ class SearchViewModel: ViewModel() {
         }
     }
     fun definitionHelper(word: WordDefinition?){
-        var numDetail = mutableListOf<WordDetail>()
+        val numDetail = mutableListOf<WordDetail>()
         try{
 
             for(i in 0..word!!.meanings.lastIndex){
-                var detail= WordDetail("["+ word!!.meanings[i].partOfSpeech+ "]","")
+                val detail= WordDetail("["+ word!!.meanings[i].partOfSpeech+ "]","")
                 for(j in 0..word!!.meanings[i].definitions.lastIndex){
                     detail.detail = detail.detail + word!!.meanings[i].definitions[j].definition +"\n\n"
                 }

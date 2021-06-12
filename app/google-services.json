@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "601611454342",
+    "project_id": "word-cards-f8e4f",
+    "storage_bucket": "word-cards-f8e4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601611454342:android:85f381d7432afe0e8d4e07",
+        "android_client_info": {
+          "package_name": "com.example.wordscard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601611454342-i0dad568k1vc4palk3i42lvu089g7tnm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKseJAQwvNJVqmmRnjGyFqQyOuhi46h3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601611454342-i0dad568k1vc4palk3i42lvu089g7tnm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
