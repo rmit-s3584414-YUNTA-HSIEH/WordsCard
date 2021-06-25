@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_list" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.wordscard.ui.notifications.NotificationsFragment"
-        android:label="@string/title_learning"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_review"
+        android:name="com.example.wordscard.ui.review.ReviewFragment"
+        android:label="@string/title_review"
+        tools:layout="@layout/fragment_review" />
 </navigation>

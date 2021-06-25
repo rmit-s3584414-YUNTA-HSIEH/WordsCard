@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="reviewViewModel"
+            type="com.example.wordscard.ui.review.ReviewViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.review.ReviewFragment">
+
+
+        <ImageButton
+            android:id="@+id/sound_button"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sound"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{()->reviewViewModel.PlayRaudio()}"/>
+
+        <TextView
+            android:id="@+id/text_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{reviewViewModel.text}"
+            android:textColor="#0B1013"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sound_button"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="text" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+
+        <TextView
+            android:id="@+id/scroll_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:scrollbars="vertical"
+            android:text="@{reviewViewModel.meaning}"
+            android:textColor="#0B1013"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_guideline"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.8" />
+
+
+        <TextView
+            android:id="@+id/click_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{reviewViewModel.reuseText}"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="#A5DEE4"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_review"
+            tools:text="test" />
+
+        <Button
+            android:id="@+id/forget_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget"
+            android:textColor="#005CAF"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bottom_guideline"
+            app:layout_goneMarginTop="10dp" />
+
+        <Button
+            android:id="@+id/know_button"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/know"
+            android:textColor="#005CAF"
+            app:layout_constraintTop_toTopOf="@id/bottom_guideline"
+            app:layout_goneMarginTop="10dp"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
