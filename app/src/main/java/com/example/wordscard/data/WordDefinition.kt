@@ -11,8 +11,8 @@ data class WordDefinition(
 
 
 data class Phonetics(
-    @field:Json(name = "text") val text: String,
-    @field:Json(name = "audio") val audio: String
+    @field:Json(name = "text") val text: String?,
+    @field:Json(name = "audio") val audio: String?
 )
 
 data class Meanings(

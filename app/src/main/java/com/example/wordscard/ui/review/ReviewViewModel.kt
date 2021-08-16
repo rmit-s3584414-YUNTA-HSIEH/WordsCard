@@ -13,8 +13,10 @@ import com.example.wordscard.ReviewApplication
 import com.example.wordscard.data.Review
 import com.example.wordscard.data.WordDefinition
 import com.example.wordscard.network.wordsApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 val learningCurve = listOf(1,2,5,7,21,30)
@@ -46,16 +48,16 @@ class ReviewViewModel: ViewModel() {
     private fun getWord(Query: String): Job {
         return viewModelScope.launch {
             try {
-                _word.value = wordsApi.retrofitService.getWord(Query)[0]
+                _word.value = withContext(Dispatchers.IO){wordsApi.retrofitService.getWord(Query)[0]}
             } catch (e: Exception) {
                 Log.i("exception", e.message.toString())
             }
         }
     }
 
-    fun PlayRaudio(){
+    fun playRaudio(){
         try {
-            val url: String = _word.value!!.phonetics[0].audio
+            val url: String = _word.value!!.phonetics[0].audio!!
             val mediaPlayer = MediaPlayer().apply {
                 setAudioAttributes(
                     AudioAttributes.Builder()
@@ -139,7 +141,7 @@ class ReviewViewModel: ViewModel() {
                     job.join()
                     displayWord()
                     setClick(false)
-                    PlayRaudio()
+                    playRaudio()
                 }
             }
 
@@ -188,7 +190,7 @@ class ReviewViewModel: ViewModel() {
                             job.join()
                             displayWord()
                             setClick(false)
-                            PlayRaudio()
+                            playRaudio()
                         }
                     }
 
@@ -208,7 +210,7 @@ class ReviewViewModel: ViewModel() {
                     job.join()
                     displayWord()
                     setClick(false)
-                    PlayRaudio()
+                    playRaudio()
                 }
             }
         }

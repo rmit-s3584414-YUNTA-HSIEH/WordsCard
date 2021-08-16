@@ -16,7 +16,9 @@ import com.example.wordscard.network.wordsApi
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SearchViewModel: ViewModel() {
@@ -39,26 +41,29 @@ class SearchViewModel: ViewModel() {
 
     fun getWord(Query: String){
         viewModelScope.launch{
+
             try{
-                _state.value = null
-                _word.value = wordsApi.retrofitService.getWord(Query)[0]
+                _state.value=null
+                _word.value = withContext(Dispatchers.IO){wordsApi.retrofitService.getWord(Query)[0]}
                 Log.i("word", _word.value!!.toString())
                 definitionHelper(_word.value)
             }catch (e: Exception){
-                _state.value = "no definition of the word"
-                _word.value = null
-                _wordDetail.value = null
-                Log.i("exception",e.message.toString())
+                _state.value ="no definition of the word"
+                _word.value =null
+                _wordDetail.value =null
+                Log.i("json exception",e.message.toString())
             }
         }
+        Log.i("get word fun", "suspend fun running")
 
     }
 
 
-    fun PlayRaudio(){
+    fun playRaudio(){
         try {
-            val url: String = _word.value!!.phonetics[0].audio
-            val mediaPlayer = MediaPlayer().apply {
+            val url: String = "https:"+ _word.value!!.phonetics[0].audio!!
+            Log.i("audio", url)
+            MediaPlayer().apply {
                 setAudioAttributes(
                     AudioAttributes.Builder()
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -70,7 +75,7 @@ class SearchViewModel: ViewModel() {
                 start()
             }
         }catch (e: Exception){
-            Log.i("exception",e.message.toString())
+            Log.i("audio exception",e.message.toString())
         }
     }
 
@@ -86,17 +91,17 @@ class SearchViewModel: ViewModel() {
                 }
                 numDetail.add(detail)
             }
-            _wordDetail.value = numDetail.toList()
+            _wordDetail.postValue(numDetail.toList())
             Log.i("Detail",_wordDetail.value.toString())
 
         }catch (e: Exception){
-            Log.i("exception",e.message.toString())
+            Log.i("helper exception",e.message.toString())
         }
 
     }
 
     // insert word in room database
-    fun insertWord(str: String){
+    private fun insertWord(str: String){
         viewModelScope.launch{
             val database = ReviewDatabase.getDatabase(ReviewApplication.applicationContext()).reviewDao()
             val reviewWord = Review(null,str,System.currentTimeMillis(),1)

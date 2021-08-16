@@ -9,7 +9,6 @@ import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.wordscard.R
 import com.example.wordscard.databinding.FragmentSearchBinding
 
@@ -67,12 +66,15 @@ class SearchFragment: Fragment() {
 
         })
 
-        viewModel.state.observe(viewLifecycleOwner, Observer{
+        viewModel.state.observe(viewLifecycleOwner, {
             if (viewModel.state.value != null) buttonOff()
         })
 
+        viewModel.word.observe(viewLifecycleOwner,{
+            Log.i("word change",viewModel.word.value.toString())})
+
         binding.textButton.setOnClickListener {
-            viewModel.PlayRaudio()
+            viewModel.playRaudio()
         }
 
         binding.collectButton.setOnClickListener {
@@ -96,6 +98,7 @@ class SearchFragment: Fragment() {
 
     private fun getWordFromList(word: String?){
         if(word != null)  {
+            Log.i("word",word)
             viewModel.getWord(word)
             buttonOn()
         }
