@@ -55,10 +55,10 @@ class ReviewViewModel: ViewModel() {
         }
     }
 
-    fun playRaudio(){
+    fun playRadio(){
         try {
-            val url: String = _word.value!!.phonetics[0].audio!!
-            val mediaPlayer = MediaPlayer().apply {
+            val url: String = "https:"+_word.value!!.phonetics[0].audio!!
+            MediaPlayer().apply {
                 setAudioAttributes(
                     AudioAttributes.Builder()
                         .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -141,7 +141,7 @@ class ReviewViewModel: ViewModel() {
                     job.join()
                     displayWord()
                     setClick(false)
-                    playRaudio()
+                    playRadio()
                 }
             }
 
@@ -190,7 +190,7 @@ class ReviewViewModel: ViewModel() {
                             job.join()
                             displayWord()
                             setClick(false)
-                            playRaudio()
+                            playRadio()
                         }
                     }
 
@@ -210,7 +210,7 @@ class ReviewViewModel: ViewModel() {
                     job.join()
                     displayWord()
                     setClick(false)
-                    playRaudio()
+                    playRadio()
                 }
             }
         }

@@ -59,7 +59,7 @@ class SearchViewModel: ViewModel() {
     }
 
 
-    fun playRaudio(){
+    fun playRadio(){
         try {
             val url: String = "https:"+ _word.value!!.phonetics[0].audio!!
             Log.i("audio", url)

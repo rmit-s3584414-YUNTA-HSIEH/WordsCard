@@ -74,7 +74,7 @@ class SearchFragment: Fragment() {
             Log.i("word change",viewModel.word.value.toString())})
 
         binding.textButton.setOnClickListener {
-            viewModel.playRaudio()
+            viewModel.playRadio()
         }
 
         binding.collectButton.setOnClickListener {
